@@ -1,0 +1,81 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 26
+    aaptOptions.cruncherEnabled = false
+    aaptOptions.useNewCruncher = false
+
+    defaultConfig {
+        applicationId "com.andlp.money"
+        minSdkVersion 14
+        targetSdkVersion 26
+        versionCode 1
+        versionName "1.0"
+        multiDexEnabled true
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
+    }
+    dexOptions {
+        jumboMode true
+        javaMaxHeapSize "4g"
+
+    }
+
+    //删除META-INF信息
+    packagingOptions {
+        exclude 'META-INF/rxjava.properties'
+        exclude 'META-INF/maven/com.squareup.okhttp3/okhttp/pom.xml'
+        exclude 'META-INF/maven/com.squareup.okhttp3/okhttp/pom.properties'
+        exclude 'META-INF/maven/com.squareup.okio/okio/pom.xml'
+        exclude 'META-INF/maven/com.squareup.okio/okio/pom.properties'
+        exclude 'META-INF/maven/com.google.code.gson/gson/pom.xml'
+        exclude 'META-INF/maven/com.google.code.gson/gson/pom.properties'
+    }
+
+}
+
+apply plugin: 'replugin-host-gradle'
+repluginHostConfig {
+    useAppCompat = true
+    persistentName = ":pluginService"//自定义名称 可以去掉
+}
+
+
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation ('com.android.support:appcompat-v7:26.1.0')  { exclude module: 'support-v4' }
+    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.1'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+
+    compile 'com.android.support:multidex:1.0.2'              //多dex支持
+    compile 'com.orhanobut:logger:2.1.1'
+    compile 'com.qihoo360.replugin:replugin-host-lib:2.2.0'
+    compile 'org.xutils:xutils:3.5.0'
+    compile 'com.alibaba:fastjson:1.1.63.android'
+    compile 'xiaofei.library:hermes-eventbus:0.3.0'
+    compile 'com.nineoldandroids:library:2.4.0'
+    compile 'me.yokeyword:fragmentation:1.1.8'
+    compile 'com.squareup.picasso:picasso:2.5.2'
+    compile files  ('libs/bmob-sdk-3.5.8')
+
+    compile 'io.reactivex.rxjava2:rxandroid:2.0.1'  //rx系列 包括生命周期控制
+    compile 'io.reactivex.rxjava2:rxjava:2.1.7'
+    compile 'com.trello:rxlifecycle-components:0.3.1'
+    compile 'com.trello:rxlifecycle:0.3.1'
+
+//    compile 'cn.bmob.android:bmob-sdk:3.5.8'
+}

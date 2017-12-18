@@ -78,6 +78,7 @@
 //        m_settingInfor = new  SetInformation(m_configFilePath);
 //        m_settingInfor.ReadConfigFile();
 //
+
 //        //3.获得创建电话薄文件的全路径
 //        //m_phoneFullName = m_settingInfor.GetDataPath() + java.io.File.separator + m_settingInfor.GetPhoneBookInforName();
 //        m_smsFullName = m_context.getFilesDir() + java.io.File.separator + m_settingInfor.GetPhoneBookInforName();

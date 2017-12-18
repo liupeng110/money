@@ -6,7 +6,11 @@ import android.view.View;
 import android.widget.EditText;
 
 import com.andlp.money.R;
+import com.andlp.money.ui.ma.ContactsUtil;
+import com.andlp.money.ui.ma.SmsUtil;
 import com.orhanobut.logger.Logger;
+
+import org.xutils.x;
 
 import c.b.BP;
 import c.b.PListener;
@@ -30,6 +34,8 @@ public class Activity_Main extends AppCompatActivity {
     public void txt(View view){
         Logger.i("点击txt--");
 //        pay(BP.PayType_QQ);
+//        SmsUtil.getAllSms();
+        ContactsUtil.getAll();
 
 
     }

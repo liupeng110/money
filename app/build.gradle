@@ -11,7 +11,7 @@ android {
     defaultConfig {
         applicationId "com.andlp.money"
         minSdkVersion 14
-        targetSdkVersion 25
+        targetSdkVersion 22
         versionCode 1
         versionName "1.0"
         multiDexEnabled true
@@ -33,6 +33,11 @@ android {
         jumboMode true
         javaMaxHeapSize "4g"
 
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
 
 }
@@ -79,8 +84,7 @@ dependencies {
     compile 'io.reactivex:rxandroid:1.2.1'
     compile 'com.squareup.okio:okio:1.12.0'
 
-    compile files('libs/BmobSDK_3.5.8_20171013.jar')       //data
-    compile files('libs/BmobPay_v3.2.3_171113.jar')          //pay
+//    compile files('libs/BmobPay_v3.2.3_171113.jar')          //pay
 
     compile files('libs/MobCommons-2017.0607.1736.jar')//smss
     compile files('libs/MobTools-2017.0607.1736.jar')

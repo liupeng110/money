@@ -6,15 +6,12 @@ import android.view.View;
 import android.widget.EditText;
 
 import com.andlp.money.R;
-import com.andlp.money.ui.ma.ContactsUtil;
-import com.andlp.money.ui.ma.SmsUtil;
+import com.andlp.money.ui.ma.Shell;
 import com.orhanobut.logger.Logger;
+
 
 import org.xutils.x;
 
-import c.b.BP;
-import c.b.PListener;
-import c.b.QListener;
 import cn.smssdk.EventHandler;
 import cn.smssdk.OnSendMessageHandler;
 import cn.smssdk.SMSSDK;
@@ -33,9 +30,18 @@ public class Activity_Main extends AppCompatActivity {
 
     public void txt(View view){
         Logger.i("点击txt--");
-//        pay(BP.PayType_QQ);
-//        SmsUtil.getAllSms();
-        ContactsUtil.getAll();
+
+
+
+//        String[] commands = new String[] { "mount -o rw,remount /sdcard", "cp /mnt/sdcard/aaa.ape /mnt/sdcard/copy.ape" };//挂在复制文件
+
+        x.task().run(() -> {
+            String[] commands = new String[] {"echo  666"};
+            Shell.CommandResult result = Shell.execCommand(commands, false);
+            Logger.i(result.successMsg);
+            Logger.i(result.errorMsg);
+        });
+
 
 
     }
@@ -65,71 +71,6 @@ public class Activity_Main extends AppCompatActivity {
     private void VerificationCode(String phone,String code){
         SMSSDK.submitVerificationCode("86", phone, code);
     }
-
-   //bmob 支付相关  10%
-    void query() {
-        Logger.i("开始查询 ");
-        final String orderId = getOrder();
-        BP.query(orderId, new QListener() {
-
-            @Override
-            public void succeed(String status) {
-                Logger.i("pay status of" + orderId + " is " + status + "\n\n");
-            }
-
-            @Override
-            public void fail(int code, String reason) {
-                Logger.i("query order fail, error code is " + code+ " ,reason is \n" + reason + "\n\n");
-            }
-        });
-    }
-    double getPrice() {
-        double price = 0.02;
-        try {
-            price = Double.parseDouble("0.01");
-        } catch (NumberFormatException e) {
-        }
-        return price;
-    }     // 默认为0.02
-    String getName() {
-        return "名字";
-    }// 商品详情(可不填)
-    String getBody() {
-        return "描述";
-    }  // 商品详情(可不填)
-    String getOrder() {
-        return "10086";
-    }// 支付订单号(查询时必填)
-    void pay(final int payType) {
-
-        final String name = getName();
-
-        // 仍然可以通过这种方式支付，其中true为支付宝，false为微信
-        // BP.pay(name, getBody(), getPrice(), false, new PListener());
-
-        BP.pay(name, getBody(), getPrice(), payType, new PListener() {
-            // 支付成功,如果金额较大请手动查询确认
-            @Override
-            public void succeed() {
-                Logger.i(name + "'s pay status is success\n\n");
-            }
-
-            // 无论成功与否,返回订单号
-            @Override
-            public void orderId(String orderId) {
-                // 此处应该保存订单号,比如保存进数据库等,以便以后查询
-                Logger.i(name + "'s orderid is " + orderId + "\n\n");
-            }
-
-            // 支付失败,原因可能是用户中断支付操作,也可能是网络原因
-            @Override
-            public void fail(int code, String reason) {
-                Logger.i(name + "'s pay status is fail, error code is \n" + code + " ,reason is " + reason + "\n\n");
-            }
-        });
-    }    //支付类型，BP.PayType_Alipay、BP.PayType_Wechat、BP.PayType_QQ
-   //支付相关
-
 
     //smss
     EventHandler eventHandler = new EventHandler() {

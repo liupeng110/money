@@ -11,8 +11,6 @@ import com.qihoo360.replugin.RePluginApplication;
 
 import org.xutils.x;
 
-import c.b.BP;
-import cn.bmob.v3.Bmob;
 import me.yokeyword.fragmentation.Fragmentation;
 import xiaofei.library.hermeseventbus.HermesEventBus;
 
@@ -33,8 +31,7 @@ public class MyApp extends RePluginApplication {
         x.Ext.init(this);
         Logger.addLogAdapter(new AndroidLogAdapter() { @Override public boolean isLoggable(int priority, String tag) { return BuildConfig.DEBUG; } });
         Fragmentation.builder().stackViewMode(Fragmentation.BUBBLE).debug(BuildConfig.DEBUG) .install();
-        Bmob.initialize(this, "bf4a880981a5abf1e9a45067dd2dcbc0");//初始sdk
-        BP.init("bf4a880981a5abf1e9a45067dd2dcbc0");
+//        Bmob.initialize(this, "bf4a880981a5abf1e9a45067dd2dcbc0");//初始sdk
         MobSDK.init(this,"1f033a797d7c3","bf4a880981a5abf1e9a45067dd2dcbc0");
 
         log();

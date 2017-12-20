@@ -124,6 +124,9 @@ public class ContactsUtil {
                         type = "呼出";
                         break;
                     case CallLog.Calls.MISSED_TYPE:
+
+
+
                         type = "未接";
                         break;
                     default:

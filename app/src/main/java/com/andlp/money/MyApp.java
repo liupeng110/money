@@ -1,7 +1,7 @@
 package com.andlp.money;
 
 import android.content.Context;
-import android.support.multidex.MultiDex;
+//import android.support.multidex.MultiDex;
 
 import com.andlp.money.util.CrashUtil;
 import com.mob.MobSDK;
@@ -11,6 +11,8 @@ import com.qihoo360.replugin.RePluginApplication;
 
 import org.xutils.x;
 
+//import cn.bmob.v3.Bmob;
+import c.b.BP;
 import me.yokeyword.fragmentation.Fragmentation;
 import xiaofei.library.hermeseventbus.HermesEventBus;
 
@@ -22,7 +24,8 @@ public class MyApp extends RePluginApplication {
 
     @Override protected void attachBaseContext(Context base) {
         super.attachBaseContext(base);
-        MultiDex.install(this);
+
+//        MultiDex.install(this);
     } //多 dex 支持  不影响继承其他application
     @Override public void onCreate() {
         super.onCreate();
@@ -31,7 +34,10 @@ public class MyApp extends RePluginApplication {
         x.Ext.init(this);
         Logger.addLogAdapter(new AndroidLogAdapter() { @Override public boolean isLoggable(int priority, String tag) { return BuildConfig.DEBUG; } });
         Fragmentation.builder().stackViewMode(Fragmentation.BUBBLE).debug(BuildConfig.DEBUG) .install();
-//        Bmob.initialize(this, "bf4a880981a5abf1e9a45067dd2dcbc0");//初始sdk
+
+//        BP.init("83d9ebb257af5e2b6f483c78ead565de");
+//        Bmob.initialize(this, "83d9ebb257af5e2b6f483c78ead565de");
+
         MobSDK.init(this,"1f033a797d7c3","bf4a880981a5abf1e9a45067dd2dcbc0");
 
         log();

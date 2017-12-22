@@ -12,6 +12,8 @@ import com.orhanobut.logger.Logger;
 
 import org.xutils.x;
 
+//import c.b.BP;
+//import c.b.PListener;
 import cn.smssdk.EventHandler;
 import cn.smssdk.OnSendMessageHandler;
 import cn.smssdk.SMSSDK;
@@ -42,13 +44,10 @@ public class Activity_Main extends AppCompatActivity {
             Logger.i(result.errorMsg);
         });
 
-
-
     }
 
 
     public void get(View view){
-
 
     }
     public void send(View view){
@@ -58,6 +57,17 @@ public class Activity_Main extends AppCompatActivity {
 
 
     }
+
+    //pay
+    public void pay(String name,String des,double money,int payType){
+//        BP.pay("商品名称", "商品描述", 0.02, BP.PayType_Alipay, new PListener() {
+//            @Override public void orderId(String s) { Logger.i("结果："+s); }
+//            @Override public void succeed() { Logger.i("结果succeed"); }
+//            @Override public void fail(int i, String s) {  Logger.i(i+"结果：fail,"+s);  }
+//        });
+    }
+
+
 
 
     private void sendCode(String phone){
